@@ -1,2 +1,2 @@
-# 01-project-atl-wdi
+# 01-project-Hangman
 Hangman

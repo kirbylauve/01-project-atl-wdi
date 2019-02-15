@@ -1,0 +1,61 @@
+.grid-container {
+    display: grid;
+
+    grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
+    grid-template-rows: 100px 75px 1fr 1fr 1fr 60px;
+
+    grid-template-areas: 
+    'mainTitle mainTitle mainTitle mainTitle mainTitle'
+    '. catagory catagory . .'
+    'nav man man win loss'
+    'nav man man alphabet alphabet'
+    'nav word word trash trash'
+    'footer footer footer footer footer';
+    width: 100vw;
+    height: 100vh;
+    /* margin: 0 auto;
+    width: 95vw; */
+}
+
+.title {
+    grid-area: mainTitle;
+    background: purple;
+}
+.crnt-cat {
+    grid-area: catagory;
+    background: pink;
+}
+.nav {
+    grid-area: nav;
+    background: orange;
+}
+
+.man {
+    grid-area: man;
+    background: yellow;
+}
+.wins {
+    grid-area: win;
+    background: green;
+
+}
+.losses {
+    grid-area: loss;
+    background: red;
+}
+.alphabet {
+    grid-area: alphabet;
+    background: blue;
+}
+.trash {
+    grid-area: trash;
+    background: brown;
+}
+.footer {
+    grid-area: footer;
+    background: lime;
+}
+.hdn-wrd {
+    grid-area: word;
+    background: lemonchiffon;
+}
