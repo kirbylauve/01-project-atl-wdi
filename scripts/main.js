@@ -33,10 +33,10 @@ const checkButton = function () {
             wrngLtrArr.length = 0;
             losses.push('loss');
             document.getElementById('loser').innerHTML=`${losses.length}`;
-            resetBoard();
-            
+            resetBoard();   
         }
     }
+    this.removeEventListener('click', checkButton);
 }
 
 // function to make letter buttons
