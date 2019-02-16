@@ -33,7 +33,8 @@ const checkButton = function () {
             wrngLtrArr.length = 0;
             losses.push('loss');
             document.getElementById('loser').innerHTML=`${losses.length}`;
-            console.log(losses.length)
+            resetBoard();
+            
         }
     }
 }
@@ -71,3 +72,9 @@ function pickWord() {
 }
 pickWord()
 
+function resetBoard () {
+    $(".alphabet").empty();
+    $(".hdn-wrd").empty();
+    pickWord();
+    makeLetters();
+}
