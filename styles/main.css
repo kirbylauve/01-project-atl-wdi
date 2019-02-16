@@ -65,6 +65,12 @@
     display:inline-block;
     color: transparent;
     margin: 2px;
+    width: 10px;  
+}
+.visible {
+    border-bottom: 3px solid black;
+    display:inline-block;
+    color: black;
+    margin: 2px;
     width: 10px;
-    
 }

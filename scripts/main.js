@@ -6,14 +6,22 @@ var hdnArr = []
 var word = ""
 
 
-//function to check if clicked button is in the word
+
 const checkButton = function () {
-    if (word.indexOf(this.innerHTML) > -1) { //checking if the letter is in the word by refrencing the the index values of the letters in the string tha is the current word. -1 means it not there by making 0 truthy
-        /* $(".hdnLtr").attr('color', 'black') */  //this is changing ALL the hdnLtr divs to color=black
-        $( div.contains(`${this.innerHTML}`) ).css( "color", "black" );
-        console.log('console.log(this)', this) //<button>Letter</button>
-        console.log('this.innerHTML', this.innerHTML) // Letter
-        console.log('word.indexOf(this.innerHTML)', word.indexOf(this.innerHTML)) //index # of letter
+    if (word.indexOf(this.innerHTML) > -1) { //if the letter exists as an index value in the word
+        let ltrInBtn = this.innerHTML; // = letter value of button clicked
+        let hdnToVisByClass = document.querySelectorAll('.hdnLtr'); //gets all elements with class .hdnLtr
+        let hdnToVisArr = Array.from(hdnToVisByClass); //turns node list into array
+        hdnToVisArr.forEach(function (elem) { //cycles through new array. elem is the div of the hidden letter
+            if (elem.dataset.letter === `${ltrInBtn}`) { //if the data-letter value = innerHTML of button pressed
+                elem.classList.remove('hdnLtr'); //remove hidden class
+                elem.classList.add('visible'); //add visible class
+            }
+        }
+        )
+
+        //hiddenToVis.dataset.letter
+        //console.log(hdnToVisByClass)
     }
 }
 
@@ -39,7 +47,7 @@ function pickWord() {
         var newLtr = hdnArr[i];
         const ltrToGuess = document.createElement('div'); // ltrToGuess = new div created
         ltrToGuess.setAttribute('class', `hdnLtr`);
-        /* ltrToGuess.setAttribute('id', `${hdnArr[i]}`); */  //gives div id of its letter but if I use id then I'd have to make a style for each one
+        ltrToGuess.setAttribute('data-letter', `${hdnArr[i]}`);  //gives div id of its letter but if I use id then I'd have to make a style for each one
         ltrToGuess.innerHTML = newLtr;
         const hdnWrdContainer = document.querySelector('.hdn-wrd');
         hdnWrdContainer.appendChild(ltrToGuess);
