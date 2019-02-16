@@ -19,9 +19,8 @@ const checkButton = function () {
             }
         }
         )
-
-        //hiddenToVis.dataset.letter
-        //console.log(hdnToVisByClass)
+    } else {
+        alert('letter not in word')
     }
 }
 
