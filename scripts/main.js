@@ -4,6 +4,7 @@ const alphabetArr = ["A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L",
 const hiddenWord = ["ARRAY", "OBJECT", "FUNCTION", "VARIABLE"]
 var hdnArr = []
 var word = ""
+const wrngLtrArr = []
 
 
 
@@ -19,10 +20,13 @@ const checkButton = function () {
             }
         })
         this.classList.add('alph-btn-good');
-        console.log(this)
+        
     } else {
-        this.classList.add('alph-btn-bad')
-        alert('letter not in word')
+        this.classList.add('alph-btn-bad');
+        alert('letter not in word');
+        console.log(this)
+        wrngLtrArr.push(this.innerHTML);
+        console.log(`${wrngLtrArr}`)
     }
 }
 
