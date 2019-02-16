@@ -5,6 +5,7 @@ const hiddenWord = ["ARRAY", "OBJECT", "FUNCTION", "VARIABLE"]
 var hdnArr = []
 var word = ""
 const wrngLtrArr = []
+const losses = []
 
 
 
@@ -24,9 +25,16 @@ const checkButton = function () {
     } else {
         this.classList.add('alph-btn-bad');
         alert('letter not in word');
-        console.log(this)
+        console.log(this);
         wrngLtrArr.push(this.innerHTML);
-        console.log(`${wrngLtrArr}`)
+        console.log(`${wrngLtrArr}`);
+        if (wrngLtrArr.length >= 6){
+            alert('you have lost!');
+            wrngLtrArr.length = 0;
+            losses.push('loss');
+            document.getElementById('loser').innerHTML=`${losses.length}`;
+            console.log(losses.length)
+        }
     }
 }
 
