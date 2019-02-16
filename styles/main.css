@@ -60,6 +60,12 @@
 .alph-btn {
     background: black;
 }
+.alph-btn-good {
+    background: rgba(61, 151, 61, 1)
+}
+.alph-btn-bad {
+    background: rgba(151, 61, 61, 1)
+}
 .hdnLtr{
     border-bottom: 3px solid black;
     display:inline-block;

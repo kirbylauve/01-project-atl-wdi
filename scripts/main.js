@@ -17,9 +17,11 @@ const checkButton = function () {
                 elem.classList.remove('hdnLtr'); //remove hidden class
                 elem.classList.add('visible'); //add visible class
             }
-        }
-        )
+        })
+        this.classList.add('alph-btn-good');
+        console.log(this)
     } else {
+        this.classList.add('alph-btn-bad')
         alert('letter not in word')
     }
 }
