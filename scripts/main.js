@@ -1,14 +1,14 @@
 console.log("js working");
 
 const alphabetArr = ["A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L", "M", "N", "O", "P", "Q", "R", "S", "T", "U", "V", "X", "Y", "Z"];
-const hiddenWord = ["ARRAY", "OBJECT", "FUNCTION", "VARIABLE"]
+const hiddenWord = ["ARRAY", "OBJECT", "FUNCTION", "VARIABLE", "GLOBAL", "LOCAL", "CALLBACK"]
 var hdnArr = []
 var word;
 var wrdArr = []
 var crctLtrArr = []
 const wrngLtrArr = []
 const losses = []
-var rgtLtrArr = []
+var crctPikArr = []
 const wins = []
 
 
@@ -28,30 +28,30 @@ const checkButton = function () {
 
         })
         this.classList.add('alph-btn-good'); //change class of button to good
-        rgtLtrArr.push(this.innerHTML);
-        wrdArr = Array.from(word)
-        crctLtrArr = [...new Set(wrdArr)];
-        if (crctLtrArr.length === rgtLtrArr.length){
-            alert(`The word was ${word} you win!`);
-            wins.push('win');
-            document.getElementById('winner').innerHTML=`${wins.length}`;
-            hiddenWord.splice(hiddenWord.indexOf(word),1)
-            rgtLtrArr.length = 0
-            wrngLtrArr.length = 0
-            resetBoard()
-            
+        crctPikArr.push(this.innerHTML); //pushes letter into crctPikArr
+        wrdArr = Array.from(word) //changes word to be guessed into array
+        crctLtrArr = [...new Set(wrdArr)]; //eliminates duplicate letters
+        if (crctLtrArr.length === crctPikArr.length) { //if simplified word array length === correctly guessed letters length
+            alert(`The word was ${word} you win!`); //alert win
+            wins.push('win'); //add win to wins array
+            document.getElementById('winner').innerHTML = `${wins.length}`; //update text to equal length of wins array
+            hiddenWord.splice(hiddenWord.indexOf(word), 1) //remove word from list 
+            crctPikArr.length = 0 //reset correct guesses
+            wrngLtrArr.length = 0 //reset incorrect guesses
+            resetBoard() //reset buttons and pick new word
+
         }
-        
+
     } else {
         this.classList.add('alph-btn-bad'); //change class of button to bad
-        alert('letter not in word'); 
+        alert('letter not in word');
         wrngLtrArr.push(this.innerHTML); //push the letter that is incorrect into an array wrngLtrArr
-        if (wrngLtrArr.length >= 6){ //if the lelngth of array reaches 6
+        if (wrngLtrArr.length >= 6) { //if the lelngth of array reaches 6
             alert('you have lost!');
             wrngLtrArr.length = 0; //reset length to zero
-            rgtLtrArr.length = 0
+            crctPikArr.length = 0 //reset good guesses
             losses.push('loss'); // add a loss to the loss array
-            document.getElementById('loser').innerHTML=`${losses.length}`; //update loss tally to = number length of array
+            document.getElementById('loser').innerHTML = `${losses.length}`; //update loss tally to = number length of array
             resetBoard();   //replace letters with new and pick new word
         }
     }
@@ -86,14 +86,14 @@ function pickWord() {
         hdnWrdContainer.appendChild(ltrToGuess); //adds the new div to the area
         console.log('current word', word);
     }
-    
-    
+
+
 }
 
 pickWord()
 
 //function to get new word and alphabet after game is complete
-function resetBoard () {
+function resetBoard() {
     $(".alphabet").empty(); //find div with class alphabet and remove all children elements
     $(".hdn-wrd").empty();
     pickWord();
