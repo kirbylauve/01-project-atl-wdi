@@ -6,7 +6,7 @@
 
     grid-template-areas: 
     'mainTitle mainTitle mainTitle mainTitle mainTitle'
-    'catagory catagory catagory catagory .'
+    'catagory catagory catagory catagory start'
     'nav man man pOne pTwo'
     'nav man man alphabet alphabet'
     'nav word word trash trash'
@@ -23,6 +23,11 @@
     grid-area: catagory;
     background: pink;
     text-align: center;
+}
+.start {
+    grid-area: start;
+    background: grey;
+
 }
 .nav {
     grid-area: nav;
