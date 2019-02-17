@@ -6,6 +6,9 @@ var hdnArr = []
 var word = ""
 const wrngLtrArr = []
 const losses = []
+const rgtLrtArr = []
+const wins = []
+
 
 
 
@@ -19,21 +22,22 @@ const checkButton = function () {
                 elem.classList.remove('hdnLtr'); //remove hidden class
                 elem.classList.add('visible'); //add visible class
             }
+
         })
-        this.classList.add('alph-btn-good');
+        this.classList.add('alph-btn-good'); //change class of button to good
+        rgtLrtArr.push(this.innerHTML);
+        console.log(rgtLrtArr);
         
     } else {
-        this.classList.add('alph-btn-bad');
-        alert('letter not in word');
-        console.log(this);
-        wrngLtrArr.push(this.innerHTML);
-        console.log(`${wrngLtrArr}`);
-        if (wrngLtrArr.length >= 6){
+        this.classList.add('alph-btn-bad'); //change class of button to bad
+        alert('letter not in word'); 
+        wrngLtrArr.push(this.innerHTML); //push the letter that is incorrect into an array wrngLtrArr
+        if (wrngLtrArr.length >= 6){ //if the lelngth of array reaches 6
             alert('you have lost!');
-            wrngLtrArr.length = 0;
-            losses.push('loss');
-            document.getElementById('loser').innerHTML=`${losses.length}`;
-            resetBoard();   
+            wrngLtrArr.length = 0; //reset length to zero
+            losses.push('loss'); // add a loss to the loss array
+            document.getElementById('loser').innerHTML=`${losses.length}`; //update loss tally to = number length of array
+            resetBoard();   //replace letters with new and pick new word
         }
     }
     this.removeEventListener('click', checkButton);
@@ -60,21 +64,23 @@ function pickWord() {
     for (var i = 0; i < hdnArr.length; i++) {
         var newLtr = hdnArr[i];
         const ltrToGuess = document.createElement('div'); // ltrToGuess = new div created
-        ltrToGuess.setAttribute('class', `hdnLtr`);
-        ltrToGuess.setAttribute('data-letter', `${hdnArr[i]}`);  //gives div id of its letter but if I use id then I'd have to make a style for each one
-        ltrToGuess.innerHTML = newLtr;
-        const hdnWrdContainer = document.querySelector('.hdn-wrd');
-        hdnWrdContainer.appendChild(ltrToGuess);
-        console.log('ltrToGuess', ltrToGuess);
-        console.log('newLtr', newLtr)
+        ltrToGuess.setAttribute('class', `hdnLtr`); //give letters the class to be invisible
+        ltrToGuess.setAttribute('data-letter', `${hdnArr[i]}`); //give dataset attribute to equal the letter that it is
+        ltrToGuess.innerHTML = newLtr; // text in div is the letter that it is
+        const hdnWrdContainer = document.querySelector('.hdn-wrd'); //selects HTML element that letters will go into
+        hdnWrdContainer.appendChild(ltrToGuess); //adds the new div to the area
     }
-
+    
+    console.log('current word', word);
 }
+
 pickWord()
 
 function resetBoard () {
-    $(".alphabet").empty();
+    $(".alphabet").empty(); //find div with class alphabet and remove all children elements
     $(".hdn-wrd").empty();
     pickWord();
     makeLetters();
 }
+
+/* console.log('hdnToVisArr', hdnToVisArr) */
