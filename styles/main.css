@@ -6,8 +6,8 @@
 
     grid-template-areas: 
     'mainTitle mainTitle mainTitle mainTitle mainTitle'
-    '. catagory catagory . .'
-    'nav man man win loss'
+    'catagory catagory catagory catagory .'
+    'nav man man pOne pTwo'
     'nav man man alphabet alphabet'
     'nav word word trash trash'
     'footer footer footer footer footer';
@@ -22,6 +22,7 @@
 .crnt-cat {
     grid-area: catagory;
     background: pink;
+    text-align: center;
 }
 .nav {
     grid-area: nav;
@@ -32,14 +33,14 @@
     grid-area: man;
     background: yellow;
 }
-.wins {
-    grid-area: win;
-    background: green;
+.pOne {
+    grid-area: pOne;
+    background: skyblue;
 
 }
-.losses {
-    grid-area: loss;
-    background: red;
+.pTwo {
+    grid-area: pTwo;
+    background: lightgreen;
 }
 .alphabet {
     grid-area: alphabet;

@@ -101,3 +101,14 @@ function resetBoard() {
 }
 
 
+//on click start
+//  alert(player one begin)
+//  run all normal game functions put everything in playGame() instead of copying code?
+//      in check button change the if length===length to award point to player one( currently wins)
+//          if bad guesses.length === 6 award point to player two(currently losses)
+//          add to numPlaysArr (initialized at 2) or use incrimenter
+//      
+//  on resetBoard() 
+//  switch player...
+//      if numPlaysArr.length % 2 === 0 { go player 1}
+//      if numPLaysArr.length % 2 === 1 { go player 2}
