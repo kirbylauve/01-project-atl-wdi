@@ -3,11 +3,14 @@ console.log("js working");
 const alphabetArr = ["A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L", "M", "N", "O", "P", "Q", "R", "S", "T", "U", "V", "X", "Y", "Z"];
 const hiddenWord = ["ARRAY", "OBJECT", "FUNCTION", "VARIABLE"]
 var hdnArr = []
-var word = ""
+var word;
+var wrdArr = []
+var crctLtrArr = []
 const wrngLtrArr = []
 const losses = []
-const rgtLrtArr = []
+var rgtLtrArr = []
 const wins = []
+
 
 
 
@@ -25,8 +28,19 @@ const checkButton = function () {
 
         })
         this.classList.add('alph-btn-good'); //change class of button to good
-        rgtLrtArr.push(this.innerHTML);
-        console.log(rgtLrtArr);
+        rgtLtrArr.push(this.innerHTML);
+        wrdArr = Array.from(word)
+        crctLtrArr = [...new Set(wrdArr)];
+        if (crctLtrArr.length === rgtLtrArr.length){
+            alert(`The word was ${word} you win!`);
+            wins.push('win');
+            document.getElementById('winner').innerHTML=`${wins.length}`;
+            hiddenWord.splice(hiddenWord.indexOf(word),1)
+            rgtLtrArr.length = 0
+            wrngLtrArr.length = 0
+            resetBoard()
+            
+        }
         
     } else {
         this.classList.add('alph-btn-bad'); //change class of button to bad
@@ -35,6 +49,7 @@ const checkButton = function () {
         if (wrngLtrArr.length >= 6){ //if the lelngth of array reaches 6
             alert('you have lost!');
             wrngLtrArr.length = 0; //reset length to zero
+            rgtLtrArr.length = 0
             losses.push('loss'); // add a loss to the loss array
             document.getElementById('loser').innerHTML=`${losses.length}`; //update loss tally to = number length of array
             resetBoard();   //replace letters with new and pick new word
@@ -69,13 +84,15 @@ function pickWord() {
         ltrToGuess.innerHTML = newLtr; // text in div is the letter that it is
         const hdnWrdContainer = document.querySelector('.hdn-wrd'); //selects HTML element that letters will go into
         hdnWrdContainer.appendChild(ltrToGuess); //adds the new div to the area
+        console.log('current word', word);
     }
     
-    console.log('current word', word);
+    
 }
 
 pickWord()
 
+//function to get new word and alphabet after game is complete
 function resetBoard () {
     $(".alphabet").empty(); //find div with class alphabet and remove all children elements
     $(".hdn-wrd").empty();
@@ -83,4 +100,4 @@ function resetBoard () {
     makeLetters();
 }
 
-/* console.log('hdnToVisArr', hdnToVisArr) */
+
