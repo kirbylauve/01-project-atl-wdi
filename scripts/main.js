@@ -23,7 +23,6 @@ var plays = '2';
                 elem.classList.remove('hdnLtr'); //remove hidden class
                 elem.classList.add('visible'); //add visible class
             }
-
         })
         this.classList.add('alph-btn-good'); //change class of button to good
         crctPikArr.push(this.innerHTML); //pushes letter into crctPikArr
@@ -38,7 +37,6 @@ var plays = '2';
             wrngLtrArr.length = 0 //reset incorrect guesses
             resetBoard() //reset buttons and pick new word
             plays++
-
         }
 
     } else {
@@ -145,6 +143,7 @@ const pickWord = function() {
         const hdnWrdContainer = document.querySelector('.hdn-wrd'); //selects HTML element that letters will go into
         hdnWrdContainer.appendChild(ltrToGuess); //adds the new div to the area
         console.log('current word', word);
+        
     }
 
 
@@ -157,36 +156,28 @@ const resetBoard = function() {
     $(".alphabet").empty(); //find div with class alphabet and remove all children elements
     $(".hdn-wrd").empty();
     pickWord();
-    newPlayer();
-    
+       
 }
 
 
 const startGame = function() {
-    newPlayer()
+    makeLettersOne()
+
     document.querySelector(".startBtn").removeEventListener('click', startGame)
     console.log("start")
-   // playGame();
-    /* if (hiddenWord.length === 0) {
-        if (playeronescore > playertwoscore) {
-            alert("player one pOneScore")
-        } else if ( playertwoscore > playeronescore) {
+    if (hiddenWord.length === 0) {
+        if (pOneScore > pTwoScore) {
+            alert("player one wins")
+        } else if ( pTwoScore > pOneScore) {
             alert("player two wins")
         }
         else {
             alert("it's a tie");
         }
-    } */
+    }
 }
 
 document.querySelector(".startBtn").addEventListener('click', startGame)
 
-const newPlayer = function() {
-    if (plays.length % 2 === 0) {
-    makeLettersOne()
-} else {
-    makeLettersTwo()
-}
-}
 
 // make image of man relate to the array length of wrong choices so the code only has to be written once
