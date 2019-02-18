@@ -35,8 +35,13 @@
 }
 
 .man {
+    display: flex;
     grid-area: man;
-    background: yellow;
+    background: white;
+}
+#manPNG {
+    height: 100%;
+    width: auto;
 }
 .pOne {
     grid-area: pOne;

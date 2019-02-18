@@ -11,9 +11,11 @@ const pTwoScore = []
 var crctPikArr = []
 var pOneScore = []
 var plays = '0';
+var crntImg = ""
+var manImg = document.getElementById('manPNG')
 
 
- const checkButtonPOne = function () {
+const checkButtonPOne = function () {
     if (word.indexOf(this.innerHTML) > -1) { //if the letter exists as an index value in the word
         let ltrInBtn = this.innerHTML; // = letter value of button clicked
         let hdnToVisByClass = document.querySelectorAll('.hdnLtr'); //gets all elements with class .hdnLtr
@@ -40,8 +42,9 @@ var plays = '0';
         }
     } else {
         this.classList.add('alph-btn-bad'); //change class of button to bad
-        alert('letter not in word');
         wrngLtrArr.push(this.innerHTML); //push the letter that is incorrect into an array wrngLtrArr
+        checkImg();
+        alert('letter not in word');
         if (wrngLtrArr.length >= 6) { //if the lelngth of array reaches 6
             alert('you have lost!');
             wrngLtrArr.length = 0; //reset length to zero
@@ -81,8 +84,9 @@ const checkButtonPTwo = function () {
         }
     } else {
         this.classList.add('alph-btn-bad'); //change class of button to bad
-        alert('letter not in word');
         wrngLtrArr.push(this.innerHTML); //push the letter that is incorrect into an array wrngLtrArr
+        checkImg();
+        alert('letter not in word');
         if (wrngLtrArr.length >= 6) { //if the lelngth of array reaches 6
             alert('you have lost!');
             wrngLtrArr.length = 0; //reset length to zero
@@ -96,7 +100,7 @@ const checkButtonPTwo = function () {
     this.removeEventListener('click', checkButtonPTwo);
 }
 // function to make letter buttons
-const makeLettersOne = function() {
+const makeLettersOne = function () {
     alert("go player one")
     for (var i = 0; i < alphabetArr.length; i++) {
         var newBtn = alphabetArr[i]; // index value is assigned to variable newBtn
@@ -107,7 +111,7 @@ const makeLettersOne = function() {
         alphaContainer.appendChild(buttons); //adds new button into the correct area
     }
 }
-const makeLettersTwo = function() {
+const makeLettersTwo = function () {
     alert("go player two");
     for (var i = 0; i < alphabetArr.length; i++) {
         var newBtn = alphabetArr[i]; // index value is assigned to variable newBtn
@@ -119,7 +123,7 @@ const makeLettersTwo = function() {
     }
 }
 //function to pick from list of words and place divs in hdn-wrd area
-const pickWord = function() {
+const pickWord = function () {
     word = hiddenWord[Math.floor(Math.random() * hiddenWord.length)];
     hdnArr = word.split("");
     for (var i = 0; i < hdnArr.length; i++) {
@@ -130,33 +134,34 @@ const pickWord = function() {
         ltrToGuess.innerHTML = newLtr; // text in div is the letter that it is
         const hdnWrdContainer = document.querySelector('.hdn-wrd'); //selects HTML element that letters will go into
         hdnWrdContainer.appendChild(ltrToGuess); //adds the new div to the area
-        console.log('current word', word);    
+        console.log('current word', word);
     }
 }
 //function to get new word and alphabet after game is complete
-const resetBoard = function() {
+const resetBoard = function () {
     $(".alphabet").empty(); //find div with class alphabet and remove all children elements
     $(".hdn-wrd").empty();
     if (plays % 2 === 0) {
         makeLettersOne()
     } else {
         makeLettersTwo()
-    } 
+    }
     if (hiddenWord.length === 0) {
         endGame();
     }
     //document.querySelector(".startBtn").addEventListener('click', alert("don't touch that!")) //it acts like its clicked all the time...
-    pickWord();     
+    pickWord();
 }
-const startGame = function() {
+const startGame = function () {
     document.querySelector(".startBtn").removeEventListener('click', startGame)
     resetBoard()
-    console.log("start")   
+    checkImg()
+    console.log("start")
 }
-const endGame = function() {
+const endGame = function () {
     if (pOneScore > pTwoScore) {
         alert("player one wins")
-    } else if ( pTwoScore > pOneScore) {
+    } else if (pTwoScore > pOneScore) {
         alert("player two wins")
     }
     else {
@@ -170,3 +175,20 @@ document.querySelector(".startBtn").addEventListener('click', startGame)
 
 
 // make image of man relate to the array length of wrong choices so the code only has to be written once
+const checkImg = function (){
+    if (wrngLtrArr.length === 1) {
+        manImg.src = "images/man/1wrng.png"
+    } else if (wrngLtrArr.length === 2) {
+        manImg.src = "images/man/2wrng.png"
+    } else if (wrngLtrArr.length === 3) {
+        manImg.src = "images/man/3wrng.png"
+    } else if (wrngLtrArr.length === 4) {
+        manImg.src = "images/man/4wrng.png"
+    } else if (wrngLtrArr.length === 5) {
+        manImg.src = "images/man/5wrng.png"
+    } else if (wrngLtrArr.length === 6) {
+        manImg.src = "images/man/6wrng.png"
+    } else {
+        manImg.src = "images/man/0wrng.png"
+    }
+}
