@@ -1,7 +1,7 @@
 console.log("js working");
 
 const alphabetArr = ["A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L", "M", "N", "O", "P", "Q", "R", "S", "T", "U", "V", "X", "Y", "Z"];
-const hiddenWord = ["ARRAY", "OBJECT", "FUNCTION", "VARIABLE", "GLOBAL", "LOCAL", "CALLBACK"]
+const hiddenWord = ["ARRAY", "OBJECT", /* "FUNCTION", "VARIABLE", "GLOBAL", "LOCAL", */ "CALLBACK"]
 var hdnArr = []
 var word;
 var wrdArr = []
@@ -10,7 +10,7 @@ const wrngLtrArr = []
 const pTwoScore = []
 var crctPikArr = []
 var pOneScore = []
-var plays = '2';
+var plays = '0';
 
 
  const checkButtonPOne = function () {
@@ -38,7 +38,6 @@ var plays = '2';
             resetBoard() //reset buttons and pick new word
             plays++
         }
-
     } else {
         this.classList.add('alph-btn-bad'); //change class of button to bad
         alert('letter not in word');
@@ -55,8 +54,6 @@ var plays = '2';
     }
     this.removeEventListener('click', checkButtonPOne);
 }
-
-
 const checkButtonPTwo = function () {
     if (word.indexOf(this.innerHTML) > -1) { //if the letter exists as an index value in the word
         let ltrInBtn = this.innerHTML; // = letter value of button clicked
@@ -67,7 +64,6 @@ const checkButtonPTwo = function () {
                 elem.classList.remove('hdnLtr'); //remove hidden class
                 elem.classList.add('visible'); //add visible class
             }
-
         })
         this.classList.add('alph-btn-good'); //change class of button to good
         crctPikArr.push(this.innerHTML); //pushes letter into crctPikArr
@@ -82,9 +78,7 @@ const checkButtonPTwo = function () {
             wrngLtrArr.length = 0 //reset incorrect guesses
             resetBoard() //reset buttons and pick new word
             plays++
-
         }
-
     } else {
         this.classList.add('alph-btn-bad'); //change class of button to bad
         alert('letter not in word');
@@ -101,8 +95,6 @@ const checkButtonPTwo = function () {
     }
     this.removeEventListener('click', checkButtonPTwo);
 }
-
-
 // function to make letter buttons
 const makeLettersOne = function() {
     alert("go player one")
@@ -115,7 +107,6 @@ const makeLettersOne = function() {
         alphaContainer.appendChild(buttons); //adds new button into the correct area
     }
 }
-
 const makeLettersTwo = function() {
     alert("go player two");
     for (var i = 0; i < alphabetArr.length; i++) {
@@ -127,9 +118,6 @@ const makeLettersTwo = function() {
         alphaContainer.appendChild(buttons); //adds new button into the correct area
     }
 }
-
-
-
 //function to pick from list of words and place divs in hdn-wrd area
 const pickWord = function() {
     word = hiddenWord[Math.floor(Math.random() * hiddenWord.length)];
@@ -142,39 +130,40 @@ const pickWord = function() {
         ltrToGuess.innerHTML = newLtr; // text in div is the letter that it is
         const hdnWrdContainer = document.querySelector('.hdn-wrd'); //selects HTML element that letters will go into
         hdnWrdContainer.appendChild(ltrToGuess); //adds the new div to the area
-        console.log('current word', word);
-        
+        console.log('current word', word);    
     }
-
-
 }
-
-pickWord()
-
 //function to get new word and alphabet after game is complete
 const resetBoard = function() {
     $(".alphabet").empty(); //find div with class alphabet and remove all children elements
     $(".hdn-wrd").empty();
-    pickWord();
-       
-}
-
-
-const startGame = function() {
-    makeLettersOne()
-
-    document.querySelector(".startBtn").removeEventListener('click', startGame)
-    console.log("start")
+    if (plays % 2 === 0) {
+        makeLettersOne()
+    } else {
+        makeLettersTwo()
+    } 
     if (hiddenWord.length === 0) {
-        if (pOneScore > pTwoScore) {
-            alert("player one wins")
-        } else if ( pTwoScore > pOneScore) {
-            alert("player two wins")
-        }
-        else {
-            alert("it's a tie");
-        }
+        endGame();
     }
+    //document.querySelector(".startBtn").addEventListener('click', alert("don't touch that!")) //it acts like its clicked all the time...
+    pickWord();     
+}
+const startGame = function() {
+    document.querySelector(".startBtn").removeEventListener('click', startGame)
+    resetBoard()
+    console.log("start")   
+}
+const endGame = function() {
+    if (pOneScore > pTwoScore) {
+        alert("player one wins")
+    } else if ( pTwoScore > pOneScore) {
+        alert("player two wins")
+    }
+    else {
+        alert("it's a tie");
+    }
+
+    //before the winner is alerted, the would be next player is alerted(because it is a function of checking the buttons and then checks for a win) Also after win, the buttons reset, and the word tries to reset but can't because the array is empty and there is nothing to split... Also whichever player starts first gets to play twice...
 }
 
 document.querySelector(".startBtn").addEventListener('click', startGame)
