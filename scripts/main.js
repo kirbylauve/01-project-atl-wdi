@@ -10,10 +10,8 @@ const wrngLtrArr = []
 const pTwoScore = []
 var crctPikArr = []
 var pOneScore = []
-var plays = 2;
+var plays = '2';
 
-
-//const playGame = function() {
 
  const checkButtonPOne = function () {
     if (word.indexOf(this.innerHTML) > -1) { //if the letter exists as an index value in the word
@@ -32,7 +30,7 @@ var plays = 2;
         wrdArr = Array.from(word) //changes word to be guessed into array
         crctLtrArr = [...new Set(wrdArr)]; //eliminates duplicate letters
         if (crctLtrArr.length === crctPikArr.length) { //if simplified word array length === correctly guessed letters length
-            alert(`The word was ${word} you win!`); //alert win
+            alert(`The word was ${word} you score!`); //alert win
             pOneScore.push('win'); //add win to wins array
             document.getElementById('playerOneScore').innerHTML = `${pOneScore.length}`; //update text to equal length of wins array
             hiddenWord.splice(hiddenWord.indexOf(word), 1) //remove word from list 
@@ -51,7 +49,7 @@ var plays = 2;
             alert('you have lost!');
             wrngLtrArr.length = 0; //reset length to zero
             crctPikArr.length = 0 //reset good guesses
-            pTwoScore.push('loss'); // add a loss to the loss array
+            pTwoScore.push('they lost'); // add a loss to the loss array
             document.getElementById('playerTwoScore').innerHTML = `${pTwoScore.length}`; //update loss tally to = number length of array
             resetBoard();   //replace letters with new and pick new word
             plays++
@@ -78,7 +76,7 @@ const checkButtonPTwo = function () {
         wrdArr = Array.from(word) //changes word to be guessed into array
         crctLtrArr = [...new Set(wrdArr)]; //eliminates duplicate letters
         if (crctLtrArr.length === crctPikArr.length) { //if simplified word array length === correctly guessed letters length
-            alert(`The word was ${word} you win!`); //alert win
+            alert(`The word was ${word} you socre!`); //alert win
             pTwoScore.push('win'); //add win to wins array
             document.getElementById('playerTwoScore').innerHTML = `${pTwoScore.length}`; //update text to equal length of wins array
             hiddenWord.splice(hiddenWord.indexOf(word), 1) //remove word from list 
@@ -97,7 +95,7 @@ const checkButtonPTwo = function () {
             alert('you have lost!');
             wrngLtrArr.length = 0; //reset length to zero
             crctPikArr.length = 0 //reset good guesses
-            pTwoScore.push('loss'); // add a loss to the loss array
+            pOneScore.push('they lost'); // add a loss to the loss array
             document.getElementById('playerOneScore').innerHTML = `${pOneScore.length}`; //update loss tally to = number length of array
             resetBoard();   //replace letters with new and pick new word
             plays++
@@ -163,8 +161,6 @@ const resetBoard = function() {
     
 }
 
-//} tried to wrap everything into a play game function
-
 
 const startGame = function() {
     newPlayer()
@@ -183,20 +179,6 @@ const startGame = function() {
     } */
 }
 
-
-
-
-//on click start
-//  alert(player one begin)
-//  run all normal game functions put everything in playGame() instead of copying code?
-//      in check button change the if length===length to award point to player one( currently wins)
-//          if bad guesses.length === 6 award point to player two(currently losses)
-//          add to numPlaysArr (initialized at 2) or use incrimenter
-//      
-//  on resetBoard() 
-//  switch player...
-//      if numPlaysArr.length % 2 === 0 { go player 1}
-/* //      if numPLaysArr.length % 2 === 1 { go player 2} */
 document.querySelector(".startBtn").addEventListener('click', startGame)
 
 const newPlayer = function() {
@@ -206,3 +188,5 @@ const newPlayer = function() {
     makeLettersTwo()
 }
 }
+
+// make image of man relate to the array length of wrong choices so the code only has to be written once
