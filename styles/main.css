@@ -116,4 +116,11 @@ button {
 }
 .startBtn {
     width: 90px;
+    align-self: center;
+}
+.tally-title {
+    text-align: center;
+}
+.counter {
+    text-align: center;
 }
