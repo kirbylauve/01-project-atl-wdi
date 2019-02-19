@@ -26,6 +26,7 @@ const checkButtonPOne = function () {
                 elem.classList.add('visible'); //add visible class
             }
         })
+        plays++
         this.classList.add('alph-btn-good'); //change class of button to good
         crctPikArr.push(this.innerHTML); //pushes letter into crctPikArr
         wrdArr = Array.from(word) //changes word to be guessed into array
@@ -38,9 +39,9 @@ const checkButtonPOne = function () {
             crctPikArr.length = 0 //reset correct guesses
             wrngLtrArr.length = 0 //reset incorrect guesses
             resetBoard() //reset buttons and pick new word
-            plays++
         }
     } else {
+        plays++
         this.classList.add('alph-btn-bad'); //change class of button to bad
         wrngLtrArr.push(this.innerHTML); //push the letter that is incorrect into an array wrngLtrArr
         checkImg();
@@ -52,7 +53,6 @@ const checkButtonPOne = function () {
             pTwoScore.push('they lost'); // add a loss to the loss array
             document.getElementById('playerTwoScore').innerHTML = `${pTwoScore.length}`; //update loss tally to = number length of array
             resetBoard();   //replace letters with new and pick new word
-            plays++
         }
     }
     this.removeEventListener('click', checkButtonPOne);
@@ -68,6 +68,7 @@ const checkButtonPTwo = function () {
                 elem.classList.add('visible'); //add visible class
             }
         })
+        plays++
         this.classList.add('alph-btn-good'); //change class of button to good
         crctPikArr.push(this.innerHTML); //pushes letter into crctPikArr
         wrdArr = Array.from(word) //changes word to be guessed into array
@@ -80,9 +81,9 @@ const checkButtonPTwo = function () {
             crctPikArr.length = 0 //reset correct guesses
             wrngLtrArr.length = 0 //reset incorrect guesses
             resetBoard() //reset buttons and pick new word
-            plays++
         }
     } else {
+        plays++
         this.classList.add('alph-btn-bad'); //change class of button to bad
         wrngLtrArr.push(this.innerHTML); //push the letter that is incorrect into an array wrngLtrArr
         checkImg();
@@ -94,7 +95,6 @@ const checkButtonPTwo = function () {
             pOneScore.push('they lost'); // add a loss to the loss array
             document.getElementById('playerOneScore').innerHTML = `${pOneScore.length}`; //update loss tally to = number length of array
             resetBoard();   //replace letters with new and pick new word
-            plays++
         }
     }
     this.removeEventListener('click', checkButtonPTwo);
@@ -151,6 +151,7 @@ const resetBoard = function () {
     }
     //document.querySelector(".startBtn").addEventListener('click', alert("don't touch that!")) //it acts like its clicked all the time...
     pickWord();
+    checkImg();
 }
 const startGame = function () {
     document.querySelector(".startBtn").removeEventListener('click', startGame)
