@@ -193,3 +193,11 @@ const checkImg = function (){
         manImg.src = "images/man/0wrng.png"
     }
 }
+
+
+//Things to redo
+//  -make game functions independant of player
+//      makeLetters
+//      checkButton
+//
+//  -pick image based on wrong      
